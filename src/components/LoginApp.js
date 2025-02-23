@@ -4,20 +4,23 @@ import React from 'react'
 export default function LoginApp() {
     const [name, setName] = useState("");
     const [dis, setDis] = useState("Bạn chưa đăng nhập");
-    const Display = () =>{
-        if(name===""){
+    const Display = (username) =>{
+        if(username===""){
             setDis("Bạn chưa đăng nhập");
         }else{
-            setDis("Welcome " + name);
+            setDis("Welcome " + username);
         }
+    }
+    const Logout = () => {
+        setName("");
+        Display("");
     }
     return (
         <div>
             <div>{dis}</div>
-            <input type='text' placeholder='username'/>
             <button onClick={()=>setName("phuc")}>Nhập phuc</button>
-            <button onClick={Display}>Đăng nhập</button>
-            <button onClick={()=>{setName("");Display();}}>Đăng xuất</button>
+            <button onClick={()=>Display(name)}>Đăng nhập</button>
+            <button onClick={Logout}>Đăng xuất</button>
         </div>
     );
 }
